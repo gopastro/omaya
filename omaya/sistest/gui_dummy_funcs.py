@@ -5,6 +5,7 @@ import logging
 import os
 import datetime
 
+
 class SISTestSuite(object):
     def __init__(self, directory, if_freq=6, oldBoard=True, card=2,
                  debug=True):
@@ -30,7 +31,8 @@ class SISTestSuite(object):
         """
         Function to get the IV sweep with no LO.
         """
-        self._print('Performing DC IV Sweep on channel %d device %s' % (channel, device))
+        self._print('Performing DC IV Sweep on channel %d device %s' %
+                    (channel, device))
         if off is None:
             off = 2
             self._print("Offset : %s" % off)
@@ -39,15 +41,16 @@ class SISTestSuite(object):
         for Vsis in vlist:
             dic = {}
             dic['Vsis'] = Vsis
-            Vs = Vsis/vmax*45*numpy.random.normal(loc=1,scale=0.5)
-            Is = Vs/45*numpy.random.normal(loc=1,scale=0.5)
+            Vs = Vsis/vmax*45*numpy.random.normal(loc=1, scale=0.5)
+            Is = Vs/45*numpy.random.normal(loc=1, scale=0.5)
             dic['Vs'] = Vs
             dic['Is'] = Is
             lisdic.append(dic)
-        self._print("Setting and reading channel %d to voltage: %s" % (channel, '##'))
+        self._print("Setting and reading channel %d to voltage: %s" %
+                    (channel, '##'))
         df = pd.DataFrame(lisdic)
         if makeplot:
-            figIV, axIV = plt.subplots(1,1,figsize=(8,6))
+            figIV, axIV = plt.subplots(1, 1, figsize=(8, 6))
             axIV.plot(df.Vs, df.Is, 'o-', label='SIS%s cold' % device)
             axIV.legend(loc='best')
             axIV.set_xlim(0, 25)
