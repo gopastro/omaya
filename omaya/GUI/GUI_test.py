@@ -4,9 +4,10 @@
 
 
 #general
-import numpy as np
+import numpy
 import pandas as pd
-import matplotlib.pyplot as pl
+import matplotlib.pyplot as plt
+import os
 
 #dash
 import dash
@@ -57,8 +58,8 @@ def dc_iv_sweep(channel=0, device='3',
 app = dash.Dash(__name__)
 
 app.layout = html.Div(children=[
-                html.H1(children='OMAYA')
-                ]),
+                html.H1(children='OMAYA'),
+
 html.Div([
     dcc.RadioItems(id='channel',
         options=[{'label':'Channel 0','value':0},
@@ -114,6 +115,7 @@ html.Div([
             {'label':'Off','value':'False'}],
             value='True')
     ]),
+])
 
 
 @app.callback(
