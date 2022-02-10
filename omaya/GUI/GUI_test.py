@@ -128,12 +128,16 @@ State('Is_gain','value'),
 State('plot','value'),
 State('save','value')
 ])
-
-data = dc_iv_sweep(channel, device,
-                vmin, vmax, step,
-                gain_Vs, gain_Is,
-                timeout=0.010, off=None,
-                makeplot, save)
+def update(ch, dev,
+            v_min, v_max, st,
+            gain_vs, gain_is,
+            plt, s):
+    data = dc_iv_sweep(channel=ch, device=dev,
+                    vmin=v_min, vmax=v_max, step=st,
+                    gain_Vs=gain_vs, gain_Is= gain_is,
+                    timeout=0.010, off=None,
+                    makeplot=plt, save=s)
+    return data
 
 
 
