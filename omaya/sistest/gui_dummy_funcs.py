@@ -9,26 +9,26 @@ class SISTestSuite(object):
 	def __init__(self, directory, if_freq=6, oldBoard=True, card=2,
                  debug=True):
 		logfile = datetime.datetime.now().strftime('sistest_%Y_%m_%d_%H%M.log')
-    logging.basicConfig(filename=logfile,
-                        level=logging.INFO,
-                        format='%(asctime)s %(levelname)s: %(message)s')
+    	logging.basicConfig(filename=logfile,
+                        	level=logging.INFO,
+                        	format='%(asctime)s %(levelname)s: %(message)s')
 		if not os.path.exists(directory):
 			self._print("making directory %s" % directory)
-      os.makedirs(directory)
+      	os.makedirs(directory)
 		self.directory = directory
-					
+
 	def _print(self, msg, loglevel=logging.INFO, ):
 		if self.debug:
 			print(msg)
     logging.log(level=loglevel, msg=msg)
-		
+
   def dc_iv_sweep(self, channel=0, device='3',
 									vmin=-2, vmax=16, step=0.1,
 									gain_Vs=80, gain_Is=200,
 									timeout=0.010, off=None,
 									makeplot=True, save=True):
 		"""
-		Function to get the IV sweep with no LO. 
+		Function to get the IV sweep with no LO.
 		"""
 		self._print('Performing DC IV Sweep on channel %d device %s' % (channel, device))
 		if off is None:
