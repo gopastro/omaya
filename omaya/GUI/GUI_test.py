@@ -58,18 +58,23 @@ def dc_iv_sweep(channel=0, device='3',
 app = dash.Dash(__name__)
 
 app.layout = html.Div(children=[
-                html.H1(children='OMAYA'),
+                html.H1(children='OMAYA',
+                style={'textAlign': 'center'}),
 html.Div([
     html.Button('Sweep',id='button')
     ]),
 
 html.Div([
+    html.Br(),
+    html.Label('Channel'),
     dcc.RadioItems(id='channel',
         options=[{'label':'Channel 0','value':0},
                 {'label':'Channel 1','value':1},
                 {'label':'Channel 2','value':2}],
                 value='0'),
 
+    html.Br(),
+    html.Label('Device'),
     dcc.RadioItems(id='device',
         options=[{'label':'Device 1','value':1},
                 {'label':'Device 2','value':2},
@@ -78,30 +83,39 @@ html.Div([
     ]),
 
 html.Div([
+    html.Br(),
     html.Label('V min'),
     dcc.Input(id='Vmin',value=-2,type='number'),
 
+    html.Br(),
     html.Label('V max'),
     dcc.Input(id='Vmax',value=16,type='number'),
 
+    html.Br(),
     html.Label('step'),
     dcc.Input(id='step',value=0.1,type='number')
     ]),
 
 html.Div([
+    html.Br(),
     html.Label('Vs Gain'),
     dcc.Input(id='Vs_gain',value=2,type='number'),
 
+    html.Br(),
     html.Label('Vs Gain'),
     dcc.Input(id='Is_gain',value=2,type='number')
     ]),
 
 html.Div([
+    html.Br(),
+    html.Label('Plot results'),
     dcc.RadioItems(id='plot',
     options=[{'label':'On','value':'True'},
             {'label':'Off','value':'False'}],
             value='True'),
 
+    html.Br(),
+    html.Label('Save results'),
     dcc.RadioItems(id='save',
     options=[{'label':'On','value':'True'},
             {'label':'Off','value':'False'}],
